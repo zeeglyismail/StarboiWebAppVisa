@@ -36,21 +36,7 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     });
 
-    // Real-time filter update
-    var filterForm = document.querySelector('form[action*="index"]');
-    if (filterForm) {
-        var filterInputs = filterForm.querySelectorAll('input, select');
-        filterInputs.forEach(function(input) {
-            if (input.type !== 'submit') {
-                input.addEventListener('change', function() {
-                    // Auto-submit filter form on change
-                    setTimeout(function() {
-                        filterForm.submit();
-                    }, 100);
-                });
-            }
-        });
-    }
+    // Remove auto-submit functionality - forms should only submit on button click
 
     // Statistics auto-refresh (every 30 seconds)
     setInterval(refreshStatistics, 30000);
@@ -161,23 +147,10 @@ function formatPaymentAmount() {
     }
 }
 
-// Search functionality enhancement
+// Search functionality enhancement - removed auto-submit
 function enhanceSearch() {
-    var searchInput = document.querySelector('input[name="passport_no"]');
-    if (searchInput) {
-        var searchTimeout;
-        searchInput.addEventListener('input', function() {
-            clearTimeout(searchTimeout);
-            var form = this.closest('form');
-            
-            // Debounce search to avoid too many requests
-            searchTimeout = setTimeout(function() {
-                if (searchInput.value.length >= 3 || searchInput.value.length === 0) {
-                    form.submit();
-                }
-            }, 500);
-        });
-    }
+    // Search will only work on manual form submission via Filter button
+    console.log('Search enhancement loaded - manual submission only');
 }
 
 // Initialize additional features

@@ -19,41 +19,41 @@
 <!-- Statistics Cards -->
 <div class="row mb-4">
     <!-- File Statistics -->
-    <div class="col-lg-6">
+    <div class="col-lg-4">
         <h5 class="mb-3">
             <i class="fas fa-file-alt me-2"></i>File Statistics
         </h5>
         <div class="row">
-            <div class="col-md-4">
+            <div class="col-12 mb-2">
                 <div class="card text-center">
-                    <div class="card-body">
-                        <h6 class="card-title">
+                    <div class="card-body py-2">
+                        <h6 class="card-title mb-1">
                             <i class="fas fa-calendar-month text-info me-2"></i>This Month
                         </h6>
-                        <h3 class="text-info">{{ statistics.total_this_month }}</h3>
-                        <p class="card-text text-muted small">Files</p>
+                        <h4 class="text-info mb-0">{{ statistics.total_this_month }}</h4>
+                        <small class="text-muted">Files</small>
                     </div>
                 </div>
             </div>
-            <div class="col-md-4">
+            <div class="col-12 mb-2">
                 <div class="card text-center">
-                    <div class="card-body">
-                        <h6 class="card-title">
+                    <div class="card-body py-2">
+                        <h6 class="card-title mb-1">
                             <i class="fas fa-calendar-year text-warning me-2"></i>This Year
                         </h6>
-                        <h3 class="text-warning">{{ statistics.total_this_year }}</h3>
-                        <p class="card-text text-muted small">Files</p>
+                        <h4 class="text-warning mb-0">{{ statistics.total_this_year }}</h4>
+                        <small class="text-muted">Files</small>
                     </div>
                 </div>
             </div>
-            <div class="col-md-4">
+            <div class="col-12">
                 <div class="card text-center">
-                    <div class="card-body">
-                        <h6 class="card-title">
+                    <div class="card-body py-2">
+                        <h6 class="card-title mb-1">
                             <i class="fas fa-infinity text-success me-2"></i>Lifetime
                         </h6>
-                        <h3 class="text-success">{{ statistics.total_lifetime }}</h3>
-                        <p class="card-text text-muted small">Files</p>
+                        <h4 class="text-success mb-0">{{ statistics.total_lifetime }}</h4>
+                        <small class="text-muted">Files</small>
                     </div>
                 </div>
             </div>
@@ -61,41 +61,72 @@
     </div>
     
     <!-- Payment Statistics -->
-    <div class="col-lg-6">
+    <div class="col-lg-4">
         <h5 class="mb-3">
-            <i class="fas fa-dollar-sign me-2"></i>Payment Statistics
+            <i class="fas fa-dollar-sign me-2"></i>Payment Revenue
         </h5>
         <div class="row">
-            <div class="col-md-4">
+            <div class="col-12 mb-2">
                 <div class="card text-center">
-                    <div class="card-body">
-                        <h6 class="card-title">
+                    <div class="card-body py-2">
+                        <h6 class="card-title mb-1">
                             <i class="fas fa-calendar-month text-info me-2"></i>This Month
                         </h6>
-                        <h3 class="text-info">${{ "%.2f"|format(statistics.payment_this_month) }}</h3>
-                        <p class="card-text text-muted small">Revenue</p>
+                        <h5 class="text-info mb-0">${{ "%.2f"|format(statistics.payment_this_month) }}</h5>
+                        <small class="text-muted">Revenue</small>
                     </div>
                 </div>
             </div>
-            <div class="col-md-4">
+            <div class="col-12 mb-2">
                 <div class="card text-center">
-                    <div class="card-body">
-                        <h6 class="card-title">
+                    <div class="card-body py-2">
+                        <h6 class="card-title mb-1">
                             <i class="fas fa-calendar-year text-warning me-2"></i>This Year
                         </h6>
-                        <h3 class="text-warning">${{ "%.2f"|format(statistics.payment_this_year) }}</h3>
-                        <p class="card-text text-muted small">Revenue</p>
+                        <h5 class="text-warning mb-0">${{ "%.2f"|format(statistics.payment_this_year) }}</h5>
+                        <small class="text-muted">Revenue</small>
                     </div>
                 </div>
             </div>
-            <div class="col-md-4">
+            <div class="col-12">
                 <div class="card text-center">
-                    <div class="card-body">
-                        <h6 class="card-title">
+                    <div class="card-body py-2">
+                        <h6 class="card-title mb-1">
                             <i class="fas fa-infinity text-success me-2"></i>Lifetime
                         </h6>
-                        <h3 class="text-success">${{ "%.2f"|format(statistics.payment_lifetime) }}</h3>
-                        <p class="card-text text-muted small">Revenue</p>
+                        <h5 class="text-success mb-0">${{ "%.2f"|format(statistics.payment_lifetime) }}</h5>
+                        <small class="text-muted">Revenue</small>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Payment Status -->
+    <div class="col-lg-4">
+        <h5 class="mb-3">
+            <i class="fas fa-credit-card me-2"></i>Payment Status
+        </h5>
+        <div class="row">
+            <div class="col-12 mb-2">
+                <div class="card text-center">
+                    <div class="card-body py-2">
+                        <h6 class="card-title mb-1">
+                            <i class="fas fa-check-circle text-success me-2"></i>Paid
+                        </h6>
+                        <h4 class="text-success mb-0">{{ statistics.paid_count }}</h4>
+                        <small class="text-muted">Records</small>
+                    </div>
+                </div>
+            </div>
+            <div class="col-12">
+                <div class="card text-center">
+                    <div class="card-body py-2">
+                        <h6 class="card-title mb-1">
+                            <i class="fas fa-exclamation-circle text-danger me-2"></i>Not Paid
+                        </h6>
+                        <h4 class="text-danger mb-0">{{ statistics.not_paid_count }}</h4>
+                        <small class="text-muted">Records</small>
                     </div>
                 </div>
             </div>
@@ -112,9 +143,13 @@
     </div>
     <div class="card-body">
         <form method="GET" action="{{ url_for('index') }}" class="row g-3">
-            <div class="col-md-3">
+            <div class="col-md-2">
                 {{ filter_form.passport_no.label(class="form-label") }}
-                {{ filter_form.passport_no(class="form-control", placeholder="Search passport number...") }}
+                {{ filter_form.passport_no(class="form-control", placeholder="Search passport...") }}
+            </div>
+            <div class="col-md-2">
+                {{ filter_form.email.label(class="form-label") }}
+                {{ filter_form.email(class="form-control", placeholder="Search email...") }}
             </div>
             <div class="col-md-2">
                 {{ filter_form.country.label(class="form-label") }}
@@ -128,13 +163,13 @@
                 {{ filter_form.payment_status.label(class="form-label") }}
                 {{ filter_form.payment_status(class="form-select") }}
             </div>
-            <div class="col-md-3">
+            <div class="col-md-2">
                 <label class="form-label">&nbsp;</label>
-                <div class="d-flex gap-2">
-                    <button type="submit" class="btn btn-outline-primary">
+                <div class="d-flex gap-1">
+                    <button type="submit" class="btn btn-outline-primary btn-sm">
                         <i class="fas fa-search me-1"></i>Filter
                     </button>
-                    <a href="{{ url_for('index') }}" class="btn btn-outline-secondary">
+                    <a href="{{ url_for('index') }}" class="btn btn-outline-secondary btn-sm">
                         <i class="fas fa-times me-1"></i>Clear
                     </a>
                 </div>

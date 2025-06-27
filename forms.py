@@ -29,6 +29,7 @@ class VisaRecordForm(FlaskForm):
     passport_no = StringField('Passport No', validators=[DataRequired(), Length(min=1, max=50)])
     name = StringField('Name', validators=[DataRequired(), Length(min=1, max=100)])
     phone_no = StringField('Phone No', validators=[DataRequired(), Length(min=1, max=20)])
+    email = StringField('Email', validators=[DataRequired(), Length(min=1, max=120)])
     
 
     
@@ -44,6 +45,7 @@ class VisaRecordForm(FlaskForm):
 
 class FilterForm(FlaskForm):
     passport_no = StringField('Passport No', validators=[Optional()])
+    email = StringField('Email', validators=[Optional()])
     country = SelectField('Country', choices=[('', 'All Countries')] + VisaRecordForm.COUNTRY_CHOICES[1:], validators=[Optional()])
     visa_status = SelectField('Visa Status', choices=[('', 'All Statuses')] + VisaRecordForm.VISA_STATUS_CHOICES, validators=[Optional()])
     payment_status = SelectField('Payment Status', choices=[('', 'All Payment Statuses')] + VisaRecordForm.PAYMENT_STATUS_CHOICES, validators=[Optional()])

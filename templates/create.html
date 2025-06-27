@@ -75,6 +75,18 @@
                         </div>
                     </div>
                     
+                    <div class="row mb-3">
+                        <div class="col-md-12">
+                            {{ form.email.label(class="form-label") }}
+                            {{ form.email(class="form-control" + (" is-invalid" if form.email.errors else "")) }}
+                            {% if form.email.errors %}
+                                <div class="invalid-feedback">
+                                    {% for error in form.email.errors %}{{ error }}{% endfor %}
+                                </div>
+                            {% endif %}
+                        </div>
+                    </div>
+                    
 
                     
                     <!-- Dates Section -->

@@ -23,8 +23,7 @@ A Flask-based web application for managing visa records and applications. The sy
 The application uses a single primary entity:
 
 **VisaRecord Model**:
-- Personal information (name, passport_no, phone_no, country)
-- Document tracking (hotel_file, ticket_file, bank_file, passport_file, pic_file, other_docs)
+- Personal information (name, passport_no, phone_no, email, country)
 - Timeline management (file_given_date, file_submit_date, visa_date)
 - Status tracking (visa_status, payment_status, payment_amount)
 - Audit fields (created_at, updated_at)
@@ -101,7 +100,12 @@ The application uses a single primary entity:
 
 ## Changelog
 - June 27, 2025. Initial setup
+- June 27, 2025. Added email field to CRUD operations and filtering
+- June 27, 2025. Enhanced dashboard with payment status counters (paid/not paid)
+- June 27, 2025. Removed file details section as requested by user
+- June 27, 2025. Removed auto-submit functionality from forms
 
 ## User Preferences
 
 Preferred communication style: Simple, everyday language.
+Dashboard layout: Organized sections (file statistics, payment revenue, payment status) to fit window properly.

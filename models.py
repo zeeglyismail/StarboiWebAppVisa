@@ -10,6 +10,7 @@ class VisaRecord(db.Model):
     passport_no = db.Column(db.String(50), nullable=False)
     name = db.Column(db.String(100), nullable=False)
     phone_no = db.Column(db.String(20), nullable=False)
+    email = db.Column(db.String(120), nullable=False)
     
 
     
@@ -64,13 +65,19 @@ class VisaRecord(db.Model):
         
         payment_lifetime = db.session.query(func.sum(cls.payment_amount)).scalar() or 0
         
+        # Payment status counters
+        paid_count = cls.query.filter(cls.payment_status == 'Paid').count()
+        not_paid_count = cls.query.filter(cls.payment_status == 'Not Paid').count()
+        
         return {
             'total_this_month': total_this_month,
             'total_this_year': total_this_year,
             'total_lifetime': total_lifetime,
             'payment_this_month': float(payment_this_month),
             'payment_this_year': float(payment_this_year),
-            'payment_lifetime': float(payment_lifetime)
+            'payment_lifetime': float(payment_lifetime),
+            'paid_count': paid_count,
+            'not_paid_count': not_paid_count
         }
     
     def to_dict(self):
@@ -81,6 +88,7 @@ class VisaRecord(db.Model):
             'passport_no': self.passport_no,
             'name': self.name,
             'phone_no': self.phone_no,
+            'email': self.email,
             'file_given_date': self.file_given_date.isoformat() if self.file_given_date else None,
             'file_submit_date': self.file_submit_date.isoformat() if self.file_submit_date else None,
             'visa_date': self.visa_date.isoformat() if self.visa_date else None,

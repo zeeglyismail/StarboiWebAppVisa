@@ -17,6 +17,10 @@ def index():
         query = query.filter(VisaRecord.passport_no.ilike(f"%{request.args.get('passport_no')}%"))
         filter_form.passport_no.data = request.args.get('passport_no')
     
+    if request.args.get('email'):
+        query = query.filter(VisaRecord.email.ilike(f"%{request.args.get('email')}%"))
+        filter_form.email.data = request.args.get('email')
+    
     if request.args.get('country'):
         query = query.filter(VisaRecord.country == request.args.get('country'))
         filter_form.country.data = request.args.get('country')
@@ -52,6 +56,7 @@ def create_record():
                 passport_no=form.passport_no.data,
                 name=form.name.data,
                 phone_no=form.phone_no.data,
+                email=form.email.data,
                 file_given_date=form.file_given_date.data,
                 file_submit_date=form.file_submit_date.data,
                 visa_date=form.visa_date.data,

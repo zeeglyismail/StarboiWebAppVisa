@@ -1,0 +1,233 @@
+{% extends "base.html" %}
+
+{% block title %}Edit Record #{{ record.id }} - Starboi WebApp{% endblock %}
+
+{% block content %}
+<div class="row">
+    <div class="col-12">
+        <div class="d-flex justify-content-between align-items-center mb-4">
+            <h1 class="h2 mb-0">
+                <i class="fas fa-edit me-2"></i>Edit Visa Record #{{ record.id }}
+            </h1>
+            <div class="btn-group">
+                <a href="{{ url_for('detail_record', record_id=record.id) }}" class="btn btn-secondary">
+                    <i class="fas fa-eye me-1"></i>View Details
+                </a>
+                <a href="{{ url_for('index') }}" class="btn btn-outline-secondary">
+                    <i class="fas fa-arrow-left me-1"></i>Back to List
+                </a>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="row justify-content-center">
+    <div class="col-lg-8">
+        <div class="card">
+            <div class="card-header">
+                <h5 class="mb-0">
+                    <i class="fas fa-form me-2"></i>Edit Visa Record Information
+                </h5>
+            </div>
+            <div class="card-body">
+                <form method="POST" novalidate>
+                    {{ form.hidden_tag() }}
+                    
+                    <!-- Basic Information Section -->
+                    <h6 class="text-primary border-bottom pb-2 mb-3">
+                        <i class="fas fa-user me-2"></i>Basic Information
+                    </h6>
+                    
+                    <div class="row mb-3">
+                        <div class="col-md-6">
+                            {{ form.country.label(class="form-label") }}
+                            {{ form.country(class="form-select" + (" is-invalid" if form.country.errors else "")) }}
+                            {% if form.country.errors %}
+                                <div class="invalid-feedback">
+                                    {% for error in form.country.errors %}{{ error }}{% endfor %}
+                                </div>
+                            {% endif %}
+                        </div>
+                        <div class="col-md-6">
+                            {{ form.passport_no.label(class="form-label") }}
+                            {{ form.passport_no(class="form-control" + (" is-invalid" if form.passport_no.errors else "")) }}
+                            {% if form.passport_no.errors %}
+                                <div class="invalid-feedback">
+                                    {% for error in form.passport_no.errors %}{{ error }}{% endfor %}
+                                </div>
+                            {% endif %}
+                        </div>
+                    </div>
+                    
+                    <div class="row mb-3">
+                        <div class="col-md-6">
+                            {{ form.name.label(class="form-label") }}
+                            {{ form.name(class="form-control" + (" is-invalid" if form.name.errors else "")) }}
+                            {% if form.name.errors %}
+                                <div class="invalid-feedback">
+                                    {% for error in form.name.errors %}{{ error }}{% endfor %}
+                                </div>
+                            {% endif %}
+                        </div>
+                        <div class="col-md-6">
+                            {{ form.phone_no.label(class="form-label") }}
+                            {{ form.phone_no(class="form-control" + (" is-invalid" if form.phone_no.errors else "")) }}
+                            {% if form.phone_no.errors %}
+                                <div class="invalid-feedback">
+                                    {% for error in form.phone_no.errors %}{{ error }}{% endfor %}
+                                </div>
+                            {% endif %}
+                        </div>
+                    </div>
+                    
+                    <!-- File Details Section -->
+                    <h6 class="text-primary border-bottom pb-2 mb-3 mt-4">
+                        <i class="fas fa-file me-2"></i>File Details
+                    </h6>
+                    
+                    <div class="row mb-3">
+                        <div class="col-md-6">
+                            {{ form.hotel_file.label(class="form-label") }}
+                            {{ form.hotel_file(class="form-control" + (" is-invalid" if form.hotel_file.errors else "")) }}
+                        </div>
+                        <div class="col-md-6">
+                            {{ form.ticket_file.label(class="form-label") }}
+                            {{ form.ticket_file(class="form-control" + (" is-invalid" if form.ticket_file.errors else "")) }}
+                        </div>
+                    </div>
+                    
+                    <div class="row mb-3">
+                        <div class="col-md-6">
+                            {{ form.bank_file.label(class="form-label") }}
+                            {{ form.bank_file(class="form-control" + (" is-invalid" if form.bank_file.errors else "")) }}
+                        </div>
+                        <div class="col-md-6">
+                            {{ form.passport_file.label(class="form-label") }}
+                            {{ form.passport_file(class="form-control" + (" is-invalid" if form.passport_file.errors else "")) }}
+                        </div>
+                    </div>
+                    
+                    <div class="row mb-3">
+                        <div class="col-md-6">
+                            {{ form.pic_file.label(class="form-label") }}
+                            {{ form.pic_file(class="form-control" + (" is-invalid" if form.pic_file.errors else "")) }}
+                        </div>
+                        <div class="col-md-6">
+                            {{ form.other_docs.label(class="form-label") }}
+                            {{ form.other_docs(class="form-control" + (" is-invalid" if form.other_docs.errors else ""), rows="3") }}
+                        </div>
+                    </div>
+                    
+                    <!-- Dates Section -->
+                    <h6 class="text-primary border-bottom pb-2 mb-3 mt-4">
+                        <i class="fas fa-calendar me-2"></i>Important Dates
+                    </h6>
+                    
+                    <div class="row mb-3">
+                        <div class="col-md-4">
+                            {{ form.file_given_date.label(class="form-label") }}
+                            {{ form.file_given_date(class="form-control" + (" is-invalid" if form.file_given_date.errors else "")) }}
+                            {% if form.file_given_date.errors %}
+                                <div class="invalid-feedback">
+                                    {% for error in form.file_given_date.errors %}{{ error }}{% endfor %}
+                                </div>
+                            {% endif %}
+                        </div>
+                        <div class="col-md-4">
+                            {{ form.file_submit_date.label(class="form-label") }}
+                            {{ form.file_submit_date(class="form-control" + (" is-invalid" if form.file_submit_date.errors else "")) }}
+                            {% if form.file_submit_date.errors %}
+                                <div class="invalid-feedback">
+                                    {% for error in form.file_submit_date.errors %}{{ error }}{% endfor %}
+                                </div>
+                            {% endif %}
+                        </div>
+                        <div class="col-md-4">
+                            {{ form.visa_date.label(class="form-label") }}
+                            {{ form.visa_date(class="form-control" + (" is-invalid" if form.visa_date.errors else "")) }}
+                            <div class="form-text">Leave empty if visa not yet issued</div>
+                        </div>
+                    </div>
+                    
+                    <!-- Calculated Fields Display -->
+                    {% if record.visa_days is not none %}
+                    <div class="alert alert-info">
+                        <i class="fas fa-calculator me-2"></i>
+                        <strong>Calculated Visa Days:</strong> {{ record.visa_days }} days
+                        <small class="d-block mt-1">
+                            ({{ record.visa_date.strftime('%Y-%m-%d') }} - {{ record.file_submit_date.strftime('%Y-%m-%d') }})
+                        </small>
+                    </div>
+                    {% endif %}
+                    
+                    <!-- Status and Payment Section -->
+                    <h6 class="text-primary border-bottom pb-2 mb-3 mt-4">
+                        <i class="fas fa-check-circle me-2"></i>Status & Payment
+                    </h6>
+                    
+                    <div class="row mb-3">
+                        <div class="col-md-4">
+                            {{ form.visa_status.label(class="form-label") }}
+                            {{ form.visa_status(class="form-select" + (" is-invalid" if form.visa_status.errors else "")) }}
+                            {% if form.visa_status.errors %}
+                                <div class="invalid-feedback">
+                                    {% for error in form.visa_status.errors %}{{ error }}{% endfor %}
+                                </div>
+                            {% endif %}
+                        </div>
+                        <div class="col-md-4">
+                            {{ form.payment_status.label(class="form-label") }}
+                            {{ form.payment_status(class="form-select" + (" is-invalid" if form.payment_status.errors else "")) }}
+                            {% if form.payment_status.errors %}
+                                <div class="invalid-feedback">
+                                    {% for error in form.payment_status.errors %}{{ error }}{% endfor %}
+                                </div>
+                            {% endif %}
+                        </div>
+                        <div class="col-md-4">
+                            {{ form.payment_amount.label(class="form-label") }}
+                            <div class="input-group">
+                                <span class="input-group-text">$</span>
+                                {{ form.payment_amount(class="form-control" + (" is-invalid" if form.payment_amount.errors else "")) }}
+                            </div>
+                            {% if form.payment_amount.errors %}
+                                <div class="invalid-feedback">
+                                    {% for error in form.payment_amount.errors %}{{ error }}{% endfor %}
+                                </div>
+                            {% endif %}
+                        </div>
+                    </div>
+                    
+                    <!-- Record Metadata -->
+                    <div class="alert alert-secondary mt-4">
+                        <div class="row">
+                            <div class="col-md-6">
+                                <small class="text-muted">
+                                    <i class="fas fa-plus me-1"></i>
+                                    <strong>Created:</strong> {{ record.created_at.strftime('%Y-%m-%d %H:%M') }}
+                                </small>
+                            </div>
+                            <div class="col-md-6">
+                                <small class="text-muted">
+                                    <i class="fas fa-edit me-1"></i>
+                                    <strong>Last Updated:</strong> {{ record.updated_at.strftime('%Y-%m-%d %H:%M') }}
+                                </small>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Submit Buttons -->
+                    <div class="d-flex justify-content-end gap-2 mt-4">
+                        <a href="{{ url_for('detail_record', record_id=record.id) }}" class="btn btn-secondary">
+                            <i class="fas fa-times me-1"></i>Cancel
+                        </a>
+                        <button type="submit" class="btn btn-primary">
+                            <i class="fas fa-save me-1"></i>Update Record
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

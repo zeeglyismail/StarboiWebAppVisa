@@ -51,19 +51,17 @@ def create_record():
     
     if form.validate_on_submit():
         try:
-            record = VisaRecord(
-                country=form.country.data,
-                passport_no=form.passport_no.data,
-                name=form.name.data,
-                phone_no=form.phone_no.data,
-                email=form.email.data,
-                file_given_date=form.file_given_date.data,
-                file_submit_date=form.file_submit_date.data,
-                visa_date=form.visa_date.data,
-                visa_status=form.visa_status.data,
-                payment_status=form.payment_status.data,
-                payment_amount=form.payment_amount.data
-            )
+            record = VisaRecord()
+            record.country = form.country.data
+            record.passport_no = form.passport_no.data
+            record.name = form.name.data
+            record.phone_no = form.phone_no.data
+            record.email = form.email.data
+            record.file_given_date = form.file_given_date.data
+            record.file_submit_date = form.file_submit_date.data
+            record.visa_date = form.visa_date.data
+            record.visa_status = form.visa_status.data
+            record.payment_status = form.payment_status.data
             
             db.session.add(record)
             db.session.commit()

@@ -19,7 +19,7 @@ class VisaRecord(db.Model):
     visa_date = db.Column(db.Date)
     visa_status = db.Column(db.String(20), nullable=False, default='Pending')  # Approved, Pending, Rejected
     payment_status = db.Column(db.String(20), nullable=False, default='Not Paid')  # Paid, Not Paid
-    payment_amount = db.Column(db.Float, nullable=False, default=1000.0)
+
     
     created_at = db.Column(db.DateTime, nullable=False, default=datetime.utcnow)
     updated_at = db.Column(db.DateTime, nullable=False, default=datetime.utcnow, onupdate=datetime.utcnow)
@@ -54,17 +54,6 @@ class VisaRecord(db.Model):
         # Total files lifetime
         total_lifetime = cls.query.count()
         
-        # Total payment amounts
-        payment_this_month = db.session.query(func.sum(cls.payment_amount)).filter(
-            cls.created_at >= current_month_start
-        ).scalar() or 0
-        
-        payment_this_year = db.session.query(func.sum(cls.payment_amount)).filter(
-            cls.created_at >= current_year_start
-        ).scalar() or 0
-        
-        payment_lifetime = db.session.query(func.sum(cls.payment_amount)).scalar() or 0
-        
         # Payment status counters
         paid_count = cls.query.filter(cls.payment_status == 'Paid').count()
         not_paid_count = cls.query.filter(cls.payment_status == 'Not Paid').count()
@@ -73,9 +62,6 @@ class VisaRecord(db.Model):
             'total_this_month': total_this_month,
             'total_this_year': total_this_year,
             'total_lifetime': total_lifetime,
-            'payment_this_month': float(payment_this_month),
-            'payment_this_year': float(payment_this_year),
-            'payment_lifetime': float(payment_lifetime),
             'paid_count': paid_count,
             'not_paid_count': not_paid_count
         }
@@ -94,7 +80,7 @@ class VisaRecord(db.Model):
             'visa_date': self.visa_date.isoformat() if self.visa_date else None,
             'visa_status': self.visa_status,
             'payment_status': self.payment_status,
-            'payment_amount': self.payment_amount,
+
             'visa_days': self.visa_days,
             'created_at': self.created_at.isoformat() if self.created_at else None,
             'updated_at': self.updated_at.isoformat() if self.updated_at else None

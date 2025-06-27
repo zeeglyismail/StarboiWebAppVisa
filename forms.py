@@ -41,7 +41,6 @@ class VisaRecordForm(FlaskForm):
     # Status and Payment
     visa_status = SelectField('Visa Status', choices=VISA_STATUS_CHOICES, validators=[DataRequired()])
     payment_status = SelectField('Payment Status', choices=PAYMENT_STATUS_CHOICES, validators=[DataRequired()])
-    payment_amount = FloatField('Payment Amount', validators=[DataRequired(), NumberRange(min=0)], default=1000.0)
 
 class FilterForm(FlaskForm):
     passport_no = StringField('Passport No', validators=[Optional()])

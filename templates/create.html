@@ -126,7 +126,7 @@
                     </h6>
                     
                     <div class="row mb-3">
-                        <div class="col-md-4">
+                        <div class="col-md-6">
                             {{ form.visa_status.label(class="form-label") }}
                             {{ form.visa_status(class="form-select" + (" is-invalid" if form.visa_status.errors else "")) }}
                             {% if form.visa_status.errors %}
@@ -135,24 +135,12 @@
                                 </div>
                             {% endif %}
                         </div>
-                        <div class="col-md-4">
+                        <div class="col-md-6">
                             {{ form.payment_status.label(class="form-label") }}
                             {{ form.payment_status(class="form-select" + (" is-invalid" if form.payment_status.errors else "")) }}
                             {% if form.payment_status.errors %}
                                 <div class="invalid-feedback">
                                     {% for error in form.payment_status.errors %}{{ error }}{% endfor %}
-                                </div>
-                            {% endif %}
-                        </div>
-                        <div class="col-md-4">
-                            {{ form.payment_amount.label(class="form-label") }}
-                            <div class="input-group">
-                                <span class="input-group-text">$</span>
-                                {{ form.payment_amount(class="form-control" + (" is-invalid" if form.payment_amount.errors else "")) }}
-                            </div>
-                            {% if form.payment_amount.errors %}
-                                <div class="invalid-feedback">
-                                    {% for error in form.payment_amount.errors %}{{ error }}{% endfor %}
                                 </div>
                             {% endif %}
                         </div>

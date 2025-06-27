@@ -25,7 +25,7 @@ The application uses a single primary entity:
 **VisaRecord Model**:
 - Personal information (name, passport_no, phone_no, email, country)
 - Timeline management (file_given_date, file_submit_date, visa_date)
-- Status tracking (visa_status, payment_status, payment_amount)
+- Status tracking (visa_status, payment_status)
 - Audit fields (created_at, updated_at)
 
 ## Key Components
@@ -104,8 +104,9 @@ The application uses a single primary entity:
 - June 27, 2025. Enhanced dashboard with payment status counters (paid/not paid)
 - June 27, 2025. Removed file details section as requested by user
 - June 27, 2025. Removed auto-submit functionality from forms
+- June 27, 2025. Removed payment revenue section and all dollar signs from dashboard and CRUD operations
 
 ## User Preferences
 
 Preferred communication style: Simple, everyday language.
-Dashboard layout: Organized sections (file statistics, payment revenue, payment status) to fit window properly.
+Dashboard layout: Organized sections (file statistics, payment status) to fit window properly - no payment revenue or dollar amounts needed.

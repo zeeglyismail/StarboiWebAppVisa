@@ -18,36 +18,86 @@
 
 <!-- Statistics Cards -->
 <div class="row mb-4">
-    <div class="col-md-4">
-        <div class="card text-center">
-            <div class="card-body">
-                <h5 class="card-title">
-                    <i class="fas fa-calendar-month text-info me-2"></i>This Month
-                </h5>
-                <h2 class="text-info">{{ statistics.total_this_month }}</h2>
-                <p class="card-text text-muted">Total files this month</p>
+    <!-- File Statistics -->
+    <div class="col-lg-6">
+        <h5 class="mb-3">
+            <i class="fas fa-file-alt me-2"></i>File Statistics
+        </h5>
+        <div class="row">
+            <div class="col-md-4">
+                <div class="card text-center">
+                    <div class="card-body">
+                        <h6 class="card-title">
+                            <i class="fas fa-calendar-month text-info me-2"></i>This Month
+                        </h6>
+                        <h3 class="text-info">{{ statistics.total_this_month }}</h3>
+                        <p class="card-text text-muted small">Files</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="card text-center">
+                    <div class="card-body">
+                        <h6 class="card-title">
+                            <i class="fas fa-calendar-year text-warning me-2"></i>This Year
+                        </h6>
+                        <h3 class="text-warning">{{ statistics.total_this_year }}</h3>
+                        <p class="card-text text-muted small">Files</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="card text-center">
+                    <div class="card-body">
+                        <h6 class="card-title">
+                            <i class="fas fa-infinity text-success me-2"></i>Lifetime
+                        </h6>
+                        <h3 class="text-success">{{ statistics.total_lifetime }}</h3>
+                        <p class="card-text text-muted small">Files</p>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
-    <div class="col-md-4">
-        <div class="card text-center">
-            <div class="card-body">
-                <h5 class="card-title">
-                    <i class="fas fa-calendar-year text-warning me-2"></i>This Year
-                </h5>
-                <h2 class="text-warning">{{ statistics.total_this_year }}</h2>
-                <p class="card-text text-muted">Total files this year</p>
+    
+    <!-- Payment Statistics -->
+    <div class="col-lg-6">
+        <h5 class="mb-3">
+            <i class="fas fa-dollar-sign me-2"></i>Payment Statistics
+        </h5>
+        <div class="row">
+            <div class="col-md-4">
+                <div class="card text-center">
+                    <div class="card-body">
+                        <h6 class="card-title">
+                            <i class="fas fa-calendar-month text-info me-2"></i>This Month
+                        </h6>
+                        <h3 class="text-info">${{ "%.2f"|format(statistics.payment_this_month) }}</h3>
+                        <p class="card-text text-muted small">Revenue</p>
+                    </div>
+                </div>
             </div>
-        </div>
-    </div>
-    <div class="col-md-4">
-        <div class="card text-center">
-            <div class="card-body">
-                <h5 class="card-title">
-                    <i class="fas fa-infinity text-success me-2"></i>Lifetime
-                </h5>
-                <h2 class="text-success">{{ statistics.total_lifetime }}</h2>
-                <p class="card-text text-muted">Total files lifetime</p>
+            <div class="col-md-4">
+                <div class="card text-center">
+                    <div class="card-body">
+                        <h6 class="card-title">
+                            <i class="fas fa-calendar-year text-warning me-2"></i>This Year
+                        </h6>
+                        <h3 class="text-warning">${{ "%.2f"|format(statistics.payment_this_year) }}</h3>
+                        <p class="card-text text-muted small">Revenue</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="card text-center">
+                    <div class="card-body">
+                        <h6 class="card-title">
+                            <i class="fas fa-infinity text-success me-2"></i>Lifetime
+                        </h6>
+                        <h3 class="text-success">${{ "%.2f"|format(statistics.payment_lifetime) }}</h3>
+                        <p class="card-text text-muted small">Revenue</p>
+                    </div>
+                </div>
             </div>
         </div>
     </div>

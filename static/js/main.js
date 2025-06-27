@@ -114,14 +114,19 @@ function refreshStatistics() {
     fetch('/api/statistics')
         .then(response => response.json())
         .then(data => {
-            // Update statistics cards
-            var thisMonthEl = document.querySelector('.text-info');
-            var thisYearEl = document.querySelector('.text-warning');
-            var lifetimeEl = document.querySelector('.text-success');
-            
-            if (thisMonthEl) thisMonthEl.textContent = data.total_this_month;
-            if (thisYearEl) thisYearEl.textContent = data.total_this_year;
-            if (lifetimeEl) lifetimeEl.textContent = data.total_lifetime;
+            // Update file statistics
+            var fileStats = document.querySelectorAll('.text-info, .text-warning, .text-success');
+            if (fileStats.length >= 6) {
+                // File statistics (first 3 elements)
+                fileStats[0].textContent = data.total_this_month;
+                fileStats[1].textContent = data.total_this_year;
+                fileStats[2].textContent = data.total_lifetime;
+                
+                // Payment statistics (last 3 elements)
+                fileStats[3].textContent = '$' + data.payment_this_month.toFixed(2);
+                fileStats[4].textContent = '$' + data.payment_this_year.toFixed(2);
+                fileStats[5].textContent = '$' + data.payment_lifetime.toFixed(2);
+            }
         })
         .catch(error => {
             console.log('Statistics refresh failed:', error);

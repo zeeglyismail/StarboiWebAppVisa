@@ -59,10 +59,24 @@ class VisaRecord(db.Model):
         # Total files lifetime
         total_lifetime = cls.query.count()
         
+        # Total payment amounts
+        payment_this_month = db.session.query(func.sum(cls.payment_amount)).filter(
+            cls.created_at >= current_month_start
+        ).scalar() or 0
+        
+        payment_this_year = db.session.query(func.sum(cls.payment_amount)).filter(
+            cls.created_at >= current_year_start
+        ).scalar() or 0
+        
+        payment_lifetime = db.session.query(func.sum(cls.payment_amount)).scalar() or 0
+        
         return {
             'total_this_month': total_this_month,
             'total_this_year': total_this_year,
-            'total_lifetime': total_lifetime
+            'total_lifetime': total_lifetime,
+            'payment_this_month': float(payment_this_month),
+            'payment_this_year': float(payment_this_year),
+            'payment_lifetime': float(payment_lifetime)
         }
     
     def to_dict(self):

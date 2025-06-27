@@ -30,13 +30,7 @@ class VisaRecordForm(FlaskForm):
     name = StringField('Name', validators=[DataRequired(), Length(min=1, max=100)])
     phone_no = StringField('Phone No', validators=[DataRequired(), Length(min=1, max=20)])
     
-    # File Details
-    hotel_file = StringField('Hotel File', validators=[Optional(), Length(max=200)])
-    ticket_file = StringField('Ticket File', validators=[Optional(), Length(max=200)])
-    bank_file = StringField('Bank File', validators=[Optional(), Length(max=200)])
-    passport_file = StringField('Passport File', validators=[Optional(), Length(max=200)])
-    pic_file = StringField('Picture File', validators=[Optional(), Length(max=200)])
-    other_docs = TextAreaField('Other Documents', validators=[Optional()])
+
     
     # Dates
     file_given_date = DateField('File Given Date', validators=[DataRequired()], default=date.today)

@@ -11,13 +11,7 @@ class VisaRecord(db.Model):
     name = db.Column(db.String(100), nullable=False)
     phone_no = db.Column(db.String(20), nullable=False)
     
-    # File Details - stored as separate fields for easier querying
-    hotel_file = db.Column(db.String(200))
-    ticket_file = db.Column(db.String(200))
-    bank_file = db.Column(db.String(200))
-    passport_file = db.Column(db.String(200))
-    pic_file = db.Column(db.String(200))
-    other_docs = db.Column(db.Text)
+
     
     file_given_date = db.Column(db.Date, nullable=False, default=date.today)
     file_submit_date = db.Column(db.Date, nullable=False, default=date.today)
@@ -87,12 +81,6 @@ class VisaRecord(db.Model):
             'passport_no': self.passport_no,
             'name': self.name,
             'phone_no': self.phone_no,
-            'hotel_file': self.hotel_file,
-            'ticket_file': self.ticket_file,
-            'bank_file': self.bank_file,
-            'passport_file': self.passport_file,
-            'pic_file': self.pic_file,
-            'other_docs': self.other_docs,
             'file_given_date': self.file_given_date.isoformat() if self.file_given_date else None,
             'file_submit_date': self.file_submit_date.isoformat() if self.file_submit_date else None,
             'visa_date': self.visa_date.isoformat() if self.visa_date else None,

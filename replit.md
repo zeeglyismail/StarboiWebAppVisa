@@ -2,7 +2,7 @@
 
 ## Overview
 
-A Flask-based web application for managing visa records and applications. The system provides a comprehensive dashboard for tracking visa applications, managing payment status, and monitoring processing timelines. Built with Python Flask, SQLAlchemy ORM, and Bootstrap frontend, it offers a complete CRUD interface for visa record management.
+A Flask-based web application for managing visa records and applications with authentication system. The system provides a comprehensive dashboard for tracking visa applications, managing payment status, and monitoring processing timelines. Built with Python Flask, SQLAlchemy ORM, and Bootstrap frontend, it offers role-based access control where authenticated users can perform full CRUD operations while anonymous users can only view and filter records.
 
 ## System Architecture
 
@@ -41,11 +41,13 @@ The application uses a single primary entity:
 - Date validation and field-specific constraints
 
 ### Routes (`routes.py`)
-- **Dashboard** (`/`): Main listing with filtering and statistics
-- **Create** (`/create`): New record creation
-- **Edit** (`/edit/<id>`): Record modification
-- **Detail** (`/detail/<id>`): Read-only record view
-- **Delete** (`/delete/<id>`): Record removal with confirmation
+- **Dashboard** (`/`): Main listing with filtering and statistics (public access)
+- **Login** (`/login`): Authentication page with demo credentials
+- **Logout** (`/logout`): Session termination
+- **Create** (`/create`): New record creation (requires authentication)
+- **Edit** (`/edit/<id>`): Record modification (requires authentication)
+- **Detail** (`/detail/<id>`): Read-only record view (public access)
+- **Delete** (`/delete/<id>`): Record removal with confirmation (requires authentication)
 
 ### Templates
 - **Base template**: Bootstrap-based layout with navigation and flash messages
@@ -105,8 +107,11 @@ The application uses a single primary entity:
 - June 27, 2025. Removed file details section as requested by user
 - June 27, 2025. Removed auto-submit functionality from forms
 - June 27, 2025. Removed payment revenue section and all dollar signs from dashboard and CRUD operations
+- June 28, 2025. Added login system with demo credentials (admin/admin123)
+- June 28, 2025. Implemented role-based access: authenticated users get full CRUD, anonymous users view-only
 
 ## User Preferences
 
 Preferred communication style: Simple, everyday language.
 Dashboard layout: Organized sections (file statistics, payment status) to fit window properly - no payment revenue or dollar amounts needed.
+Authentication: Demo login system with hardcoded credentials that can be changed in code. No registration needed.

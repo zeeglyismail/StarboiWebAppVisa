@@ -192,15 +192,17 @@
             </div>
             <div class="card-body">
                 <div class="d-grid gap-2">
-                    <a href="{{ url_for('edit_record', record_id=record.id) }}" class="btn btn-warning">
-                        <i class="fas fa-edit me-2"></i>Edit Record
-                    </a>
-                    <button type="button" class="btn btn-danger" onclick="confirmDelete({{ record.id }})">
-                        <i class="fas fa-trash me-2"></i>Delete Record
-                    </button>
-                    <a href="{{ url_for('create_record') }}" class="btn btn-primary">
-                        <i class="fas fa-plus me-2"></i>Create New Record
-                    </a>
+                    {% if session.get('logged_in') %}
+                        <a href="{{ url_for('edit_record', record_id=record.id) }}" class="btn btn-warning">
+                            <i class="fas fa-edit me-2"></i>Edit Record
+                        </a>
+                        <button type="button" class="btn btn-danger" onclick="confirmDelete({{ record.id }})">
+                            <i class="fas fa-trash me-2"></i>Delete Record
+                        </button>
+                        <a href="{{ url_for('create_record') }}" class="btn btn-primary">
+                            <i class="fas fa-plus me-2"></i>Create New Record
+                        </a>
+                    {% endif %}
                     <a href="{{ url_for('index') }}" class="btn btn-outline-secondary">
                         <i class="fas fa-list me-2"></i>View All Records
                     </a>

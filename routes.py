@@ -1,8 +1,10 @@
-from flask import render_template, request, redirect, url_for, flash, jsonify
+from flask import render_template, request, redirect, url_for, flash, jsonify, session
 from app import app, db
 from models import VisaRecord
 from forms import VisaRecordForm, FilterForm
-from datetime import datetime, date
+from login_forms import LoginForm
+from auth import login_required, is_logged_in, login_user, logout_user, check_credentials
+from datetime import datetime, date, timedelta
 
 @app.route('/')
 def index():
@@ -44,7 +46,34 @@ def index():
                          filter_form=filter_form, 
                          statistics=statistics)
 
+@app.route('/login', methods=['GET', 'POST'])
+def login():
+    """Login page"""
+    if is_logged_in():
+        return redirect(url_for('index'))
+    
+    form = LoginForm()
+    
+    if form.validate_on_submit():
+        if check_credentials(form.username.data, form.password.data):
+            login_user()
+            flash('Login successful!', 'success')
+            next_page = request.args.get('next')
+            return redirect(next_page) if next_page else redirect(url_for('index'))
+        else:
+            flash('Invalid username or password.', 'danger')
+    
+    return render_template('login.html', form=form)
+
+@app.route('/logout')
+def logout():
+    """Logout user"""
+    logout_user()
+    flash('You have been logged out.', 'info')
+    return redirect(url_for('index'))
+
 @app.route('/create', methods=['GET', 'POST'])
+@login_required
 def create_record():
     """Create a new visa record"""
     form = VisaRecordForm()
@@ -83,6 +112,7 @@ def detail_record(record_id):
     return render_template('detail.html', record=record)
 
 @app.route('/edit/<int:record_id>', methods=['GET', 'POST'])
+@login_required
 def edit_record(record_id):
     """Edit an existing visa record"""
     record = VisaRecord.query.get_or_404(record_id)
@@ -105,6 +135,7 @@ def edit_record(record_id):
     return render_template('edit.html', form=form, record=record)
 
 @app.route('/delete/<int:record_id>', methods=['POST'])
+@login_required
 def delete_record(record_id):
     """Delete a visa record"""
     record = VisaRecord.query.get_or_404(record_id)

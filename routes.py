@@ -1,5 +1,6 @@
 from flask import render_template, request, redirect, url_for, flash, jsonify, session
-from app import app, db
+from app import app
+from extensions import db
 from models import VisaRecord
 from forms import VisaRecordForm, FilterForm
 from login_forms import LoginForm

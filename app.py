@@ -1,5 +1,6 @@
 import os
 import logging
+from extensions import db
 from datetime import timedelta
 from flask import Flask
 from flask_sqlalchemy import SQLAlchemy
@@ -8,11 +9,6 @@ from werkzeug.middleware.proxy_fix import ProxyFix
 
 # Set up logging
 logging.basicConfig(level=logging.DEBUG)
-
-class Base(DeclarativeBase):
-    pass
-
-db = SQLAlchemy(model_class=Base)
 
 # Create the app
 app = Flask(__name__)

@@ -2,8 +2,8 @@ from flask import session, redirect, url_for, flash, request
 from functools import wraps
 
 # Demo login credentials - change these as needed
-DEMO_USERNAME = "admin"
-DEMO_PASSWORD = "admin123"
+DEMO_USERNAME = "Starboy"
+DEMO_PASSWORD = "Nadimun@"
 
 def login_required(f):
     """Decorator to require login for certain routes"""
